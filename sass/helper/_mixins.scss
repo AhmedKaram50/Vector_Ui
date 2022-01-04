@@ -1,0 +1,30 @@
+@mixin make-layout($color, $opacity) {
+  @extend %my-layout;
+  background-color: rgba($color, $opacity);
+}
+//- mobile tablet laptop 17inch 22inch For font-size
+@mixin res-font-size($xs, $s, $mid, $lg, $xlg) {
+  @media (max-width: 675px) {font-size: $xs}
+  @media (min-width: 675px){font-size: $xs}
+  @media (min-width: 768px) {font-size: $s}
+  @media (min-width: 992px) {font-size: $mid}
+  @media (min-width: 1400px) {font-size: $lg}
+  @media (min-width: 1600px) {font-size: $xlg}
+}
+//- mobile tablet laptop 17inch 22inch For font-size
+@mixin res-width($xs, $s, $mid, $lg, $xlg) {
+  @media (max-width: 675px) {width: $xs}
+  @media (min-width: 675px){width: $xs}
+  @media (min-width: 768px) {width: $s}
+  @media (min-width: 992px) {width: $mid}
+  @media (min-width: 1400px) {width: $lg}
+  @media (min-width: 1600px) {width: $xlg}
+}
+
+@mixin def-flex($width, $gap){
+  display: flex;
+  gap: $gap;
+  & > *{
+    width: $width;
+  }
+}

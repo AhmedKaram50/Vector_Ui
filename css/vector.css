@@ -1,0 +1,293 @@
+/*
+    @content
+    & => means the parent
+     => means the parent and all before it
+*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,100;1,200;1,300&display=swap");
+.accordion_toggle .accordion_toggle_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body {
+  height: 3000px;
+  background-color: #222f3e;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d3436;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00b894;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+.container {
+  width: 1400px;
+  margin: 0 auto;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+/* ============== Start Accordions ============== */
+.accordion {
+  margin-top: 80px;
+}
+
+.accordion .holder .heading h1 {
+  position: relative;
+  font-size: 36px;
+}
+
+.accordion .holder .heading h1:before {
+  content: '';
+  width: 80px;
+  height: 2px;
+  background-color: #00b894;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
+
+.accordion_default .accordion_default_heading ul {
+  list-style: none;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 50px;
+}
+
+.accordion_default .accordion_default_heading ul li {
+  font-weight: 600;
+  padding: 5px 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.accordion_default .accordion_default_heading ul li.active, .accordion_default .accordion_default_heading ul li:hover {
+  background-color: #fff;
+  color: #222f3e;
+}
+
+.accordion_default .accordion_default_body {
+  overflow: hidden;
+}
+
+.accordion_default .accordion_default_body .item {
+  background-color: #fff;
+  padding: 20px 20px;
+  color: #1c1c1c;
+  font-weight: 500;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+.accordion_default .accordion_default_body .item:not(.active) {
+  display: none;
+}
+
+.accordion_default .accordion_default_body .item h3 {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.accordion_default .accordion_default_body .item p {
+  line-height: 1.6;
+  color: #444;
+}
+
+.accordion_toggle {
+  margin-top: 50px;
+}
+
+.accordion_toggle .accordion_toggle_title {
+  margin: 5px 0;
+  background-color: #fff;
+  color: #222f3e;
+  padding: 15px 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.accordion_toggle .accordion_toggle_title.active i {
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.accordion_toggle .accordion_toggle_title:not(.active) + .accordion_toggle_body {
+  max-height: 0;
+}
+
+.accordion_toggle .accordion_toggle_title.active + .accordion_toggle_body {
+  max-height: 500px;
+  padding-block: 20px;
+}
+
+.accordion_toggle .accordion_toggle_body {
+  overflow: hidden;
+  background-color: #fff;
+  color: #444444;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 5px 0;
+}
+
+div[class^="accordion"][class$="_body"] h3 {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+div[class^="accordion"][class$="_body"] p {
+  line-height: 1.6;
+  color: #444;
+  color: #1c1c1c;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes slideDown {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+}
+
+@-webkit-keyframes slideUpTwo {
+  0% {
+    max-height: 0;
+    padding-block: 0;
+  }
+  100% {
+    max-height: 500px;
+    padding-block: 20px;
+  }
+}
+
+@keyframes slideUpTwo {
+  0% {
+    max-height: 0;
+    padding-block: 0;
+  }
+  100% {
+    max-height: 500px;
+    padding-block: 20px;
+  }
+}
+
+@-webkit-keyframes slideDownTwo {
+  0% {
+    max-height: 500px;
+    padding-block: 20;
+  }
+  100% {
+    max-height: 0px;
+    padding-block: 0;
+  }
+}
+
+@keyframes slideDownTwo {
+  0% {
+    max-height: 500px;
+    padding-block: 20;
+  }
+  100% {
+    max-height: 0px;
+    padding-block: 0;
+  }
+}
+
+/* ============== End Accordions ============== */
+/* ============== Start Side Bar ============== */
+#sidebar {
+  background-color: #00b894;
+  height: 100vh;
+  width: 25%;
+  position: fixed;
+  top: 0;
+  left: -25%;
+  z-index: 100;
+  text-align: center;
+  padding: 30px;
+}
+
+#sidebar h4 {
+  font-size: 40px;
+}
+
+/* ============== Start Side Bar ============== */
+/*# sourceMappingURL=vector.css.map */

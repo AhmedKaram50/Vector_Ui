@@ -1,0 +1,61 @@
+// Make Color Depend On Background Color Lightness
+@function color-depend-bg($color) {
+    @if (lightness($color) > 70) {
+      @return $main-color;
+    } @else {
+      @return #fff;
+    }
+  }
+  
+  // Border Radius Maker
+  @function radius($state) {
+    @if ($state == "rounded") {
+      @return 50%;
+    } @else if ($state == "low") {
+      @return 4px;
+    } @else if ($state == "medium") {
+      @return 10px;
+    } @else if ($state == "high") {
+      @return 30px;
+    } @else {
+      @return 0px;
+    }
+  }
+  
+  // Hover Transition
+  @function transform-kind($kind) {
+    @if ($kind == "grow") {
+      @return scale(1.08);
+    } @else if ($kind == "shrink") {
+      @return scale(0.92);
+    } @else {
+      @return none;
+    }
+  }
+  
+
+
+
+  // Buttons Generator
+  @mixin make-button($bg, $size, $width, $radius, $hover) {
+    @extend %btn;
+    &:hover {
+      transform: transform-kind($hover);
+      background-color: darken($bg, 5%);
+    }
+    @if ($size == small) {
+      padding: 5px 15px;
+      font-size: 14px
+    } @else if ($size == "mid"){
+      padding: 12px 25px;
+      font-size: 16px
+    } @else if ($size == "big"){
+      padding: 15px 40px;
+      font-size: 19px
+    }
+    background-color: $bg;
+    color: color-depend-bg($bg);
+    // font-size: $size;
+    width: $width;
+    border-radius: radius($radius);
+  }
