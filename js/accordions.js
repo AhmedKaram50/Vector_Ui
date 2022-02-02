@@ -34,7 +34,6 @@ headingLinks.forEach(link => {
 
 
 const accordionToggle = Array.from(document.getElementsByClassName("accordion_toggle_title"));
-console.log(accordionToggle)
 
 
 
