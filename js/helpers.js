@@ -95,9 +95,17 @@ class VectorElementCollection extends Array {
         return children
     }
 
-    // Need To Be a dynamic property
-    siblings () {
-
+    siblings (selector) {
+        const siblings = new VectorElementCollection(...this[0].parentElement.children)
+        if (selector && selector.startsWith(".")) {
+            const filteredS = siblings.filter(element => element.classList.contains(selector.substr(1)))
+            return new VectorElementCollection(...filteredS)
+        }
+        if (selector && !selector.startsWith(".")) {
+            const filteredS = siblings.filter(element => element.nodeName.toLowerCase() == selector)
+            return new VectorElementCollection(...filteredS)
+        }
+        return siblings
     }
 }
 
@@ -116,3 +124,4 @@ $(".move-kok").append("<p>This Pragraph From append Function Append</p>", "appen
 console.log($(".kok").attr("data-add", "global"))
 
 console.log($(".accordion_toggle_body").children())
+console.log($(".move-kok").siblings("div"))
