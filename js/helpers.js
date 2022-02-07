@@ -138,50 +138,12 @@ class VectorElementCollection extends Array {
 
 
 
-// $(".accordion_toggle_title").on("click", function () {
-//     $(".accordion_toggle_title").css({
-//         "background-color": "#000",
-//         "color": "#fff",
-//         "font-size": "20px"
-//     })
-//     $(this).css("font-size: 80px").css("background-color: aqua").toggleClass("tototototot")
-// })
-
-// $(".move-kok").append("<p>This Pragraph From append Function Prepend</p>", "prepend")
-// $(".move-kok").append("<p>This Pragraph From append Function Append</p>", "append")
-// console.log($(".kok").attr("data-add", "global"))
-
-// console.log($(".accordion_toggle_body").children())
-// console.log($(".move-kok").siblings("div"))
-
-// $(".move-kok").click((e) => {
-//     console.log("ahmed is clicked the button")
-//     console.log(e)
-// })
-
-// $(".move-kok").remove()
-
-// $(".move-kok").empty()
 
 
 
-// const countriesSelect = $("#countries")
-// const regionsSelect = $("#regions")
+countriesData($("#countries"), $("#regions"))
 
-// function countriesData (countryName = "Egypt") {
-//     fetch("https://cdn.lexmodo.com/1/b7a39ac257a2a4ea1ef4f07bb50937801/json/countries_16hxYjuL12fZ.json").then(result => result.json())
-//     .then(countries => {
-//         countries.forEach(country => {
-//             if (country.countryName == countryName) {
-//                 countriesSelect.append(`<option selected>${country.countryName}</option>`)
-//                 regionsSelect.empty()
-//                 country.regions.forEach(region => {
-//                     regionsSelect.append(`<option value="${region.name}">${region.name}</option>`)
-//                 })
-//             } else countriesSelect.append(`<option>${country.countryName}</option>`)
-            
-//         })
-//     })
-// }
-// countriesData()
-// countriesSelect.change((e) => countriesData(e.target.value))
+
+
+
+//<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
