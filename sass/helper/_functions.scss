@@ -34,6 +34,10 @@
   }
   
 
+  // Return Assets Url From The Base Folder Variable Url
+  @function assets($type, $file){
+    @return url($assets-root-folder + '/' + $type + '/' + $file);
+  }
 
 
   // Buttons Generator

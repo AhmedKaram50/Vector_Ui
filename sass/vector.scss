@@ -215,3 +215,19 @@ div[class^="accordion"]{
   }
 }
 /* ============== Start Side Bar ============== */
+
+.mixin{
+  @include res-font-size(50px, 20px, 40px, 50px, 60px)
+  // font-size: map-get($responsive-screens, "small")
+}
+
+.child-2{
+  @at-root .another-parent{
+    color: red
+  }
+}
+
+.bg{
+  background: assets("images", "koko.png");
+  height: 100vh;
+}

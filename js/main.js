@@ -11,5 +11,5 @@ function countriesData (countryBox, regionBox, countryName = "Egypt") {
             } else countryBox.append(`<option>${country.countryName}</option>`)
             
         })
-    })
+    }).then(() => countryBox.change((e) => countriesData(countryBox, regionBox, e.target.value)))
 }

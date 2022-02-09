@@ -114,10 +114,10 @@ class VectorElementCollection extends Array {
         this.forEach(el => el.addEventListener("click", (e) => callBack(e)))
     }
 
-    /* Start Events */
     change(callBack) {
         this.forEach(el => el.addEventListener("change", (e) => callBack(e)))
     }
+    /* End Events */
 
     remove() {
         this.forEach(el => el.remove())
@@ -131,14 +131,27 @@ class VectorElementCollection extends Array {
         all.remove()
     }
 
-    replaceAll (selectors) {
-
+    replaceWith (selector) {
+        this.empty()
+        if (typeof selector == "string") {
+            this.forEach(el => $(el).append(selector))
+        }
+        if (selector instanceof VectorElementCollection){
+            this.forEach(el => selector.forEach(element => el.append(element)))
+        }
+         return this
     }
+
+    // replaceAll (selector) {
+    //     if (typeof selector == "string") {
+    //         this.forEach(el => $(el).append(selector))
+    //     }
+    //     if (selector instanceof VectorElementCollection){
+    //         this.forEach(el => selector.forEach(element => el.append(element)))
+    //     }
+    //      return this
+    // }
 }
-
-
-
-
 
 
 countriesData($("#countries"), $("#regions"))

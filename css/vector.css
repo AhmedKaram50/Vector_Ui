@@ -16,6 +16,12 @@
           align-items: center;
 }
 
+/*--- New ---- */
+/*
+   mobile tablet laptop 17inch 22inch For font-size
+   - Using responsive-screen map in variables file
+*/
+/*--- New ---- */
 body {
   height: 3000px;
   background-color: #222f3e;
@@ -290,4 +296,48 @@ div[class^="accordion"][class$="_body"] p {
 }
 
 /* ============== Start Side Bar ============== */
+@media (max-width: 675px) {
+  .mixin {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 675px) {
+  .mixin {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .mixin {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .mixin {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .mixin {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .mixin {
+    font-size: 60px;
+  }
+}
+
+.another-parent {
+  color: red;
+}
+
+.bg {
+  background: url("../assets/images/koko.png");
+  height: 100vh;
+}
 /*# sourceMappingURL=vector.css.map */

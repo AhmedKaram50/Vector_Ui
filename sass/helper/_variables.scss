@@ -13,3 +13,15 @@ $accent-color: #8E8E8E;
 
 // Flate Colors
 $flat-green: #00b894;
+
+// Assets Root Folder
+$assets-root-folder: '../assets';
+
+// For Layout & Responsive Things
+$responsive-screens: (
+  'xsmall': 675px,
+  'small': 768px,
+  'miduem': 992px,
+  'large': 1400px,
+  'xlarge': 1600px,
+);
