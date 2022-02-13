@@ -30,6 +30,10 @@ class VectorElementCollection extends Array {
         return this
     }
 
+    hasClass () {
+        
+    }
+
     toggleClass(className) {
         this.forEach(el => el.classList.toggle(className))
         return this
@@ -151,6 +155,33 @@ class VectorElementCollection extends Array {
     //     }
     //      return this
     // }
+
+    popUp(time) {
+        const timeInSeconds = time / 1000;
+        this.css({
+            "transform": "scale(0)"
+        })
+        setTimeout(() => {
+            console.log(this.css({
+                "transition": `all ${timeInSeconds}s cubic-bezier(0, 0.04, 0, 0.89)`,
+                "transform": "scale(1)"
+            }))
+        }, 0)
+    }
+
+    popOut(time) {
+        const timeInSeconds = time / 1000;
+        this.css({
+            "transform": "scale(1)"
+        })
+        setTimeout(() => {
+            console.log(this.css({
+                "transition": `all ${timeInSeconds}s cubic-bezier(0, 0.04, 0, 0.89)`,
+                "transform": "scale(0)"
+            }))
+        }, 0)
+    }
+
 }
 
 
@@ -158,5 +189,16 @@ countriesData($("#countries"), $("#regions"))
 
 
 
+$(".fade-this").popUp(500)
+
+$(".f-two").popOut(200)
+
+
 
 //<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
+/*
+    - parent()
+    - popUp(time)
+    - popOut(time)
+    - hasClass(className)
+*/

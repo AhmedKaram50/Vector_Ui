@@ -23,7 +23,7 @@
 */
 /*--- New ---- */
 body {
-  height: 3000px;
+  height: 5000px;
   background-color: #222f3e;
   color: #fff;
   font-family: "Poppins", sans-serif;
@@ -339,5 +339,14 @@ div[class^="accordion"][class$="_body"] p {
 .bg {
   background: url("../assets/images/koko.png");
   height: 100vh;
+}
+
+.fade-this {
+  background-color: #000;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px;
+  line-height: 30px;
 }
 /*# sourceMappingURL=vector.css.map */
