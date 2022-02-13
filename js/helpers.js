@@ -185,13 +185,13 @@ class VectorElementCollection extends Array {
 }
 
 
-countriesData($("#countries"), $("#regions"))
+// countriesData($("#countries"), $("#regions"))
 
 
 
-$(".fade-this").popUp(500)
+// $(".fade-this").popUp(500)
 
-$(".f-two").popOut(200)
+// $(".f-two").popOut(200)
 
 
 
