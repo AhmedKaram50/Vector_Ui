@@ -4,7 +4,7 @@
 
 body {
   height: 5000px;
-  background-color: #222f3e;
+  background-color: #1c1c1c;
   color: #fff;
   font-family: $main-font;
   font-weight: 500;
@@ -241,4 +241,10 @@ div[class^="accordion"]{
   line-height: 30px;
   // opacity: 0;
   // transform: scale(0);
+}
+
+.hello{
+  width: 100px;
+  display: block;
+  padding: 20px;
 }

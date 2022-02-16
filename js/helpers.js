@@ -30,8 +30,8 @@ class VectorElementCollection extends Array {
         return this
     }
 
-    hasClass () {
-        
+    hasClass (className) {
+        return this[0].classList.contains(className)
     }
 
     toggleClass(className) {
@@ -113,7 +113,7 @@ class VectorElementCollection extends Array {
         return siblings
     }
 
-    /* Start Events */
+    /* ==================== Start Events ==================== */
     click(callBack) {
         this.forEach(el => el.addEventListener("click", (e) => callBack(e)))
     }
@@ -121,7 +121,7 @@ class VectorElementCollection extends Array {
     change(callBack) {
         this.forEach(el => el.addEventListener("change", (e) => callBack(e)))
     }
-    /* End Events */
+    /* ==================== End Events ==================== */
 
     remove() {
         this.forEach(el => el.remove())
@@ -146,26 +146,16 @@ class VectorElementCollection extends Array {
          return this
     }
 
-    // replaceAll (selector) {
-    //     if (typeof selector == "string") {
-    //         this.forEach(el => $(el).append(selector))
-    //     }
-    //     if (selector instanceof VectorElementCollection){
-    //         this.forEach(el => selector.forEach(element => el.append(element)))
-    //     }
-    //      return this
-    // }
-
     popUp(time) {
         const timeInSeconds = time / 1000;
         this.css({
             "transform": "scale(0)"
         })
         setTimeout(() => {
-            console.log(this.css({
+            this.css({
                 "transition": `all ${timeInSeconds}s cubic-bezier(0, 0.04, 0, 0.89)`,
                 "transform": "scale(1)"
-            }))
+            })
         }, 0)
     }
 
@@ -175,12 +165,57 @@ class VectorElementCollection extends Array {
             "transform": "scale(1)"
         })
         setTimeout(() => {
-            console.log(this.css({
+            this.css({
                 "transition": `all ${timeInSeconds}s cubic-bezier(0, 0.04, 0, 0.89)`,
                 "transform": "scale(0)"
-            }))
+            })
         }, 0)
     }
+
+    parent(parent) {
+        let prnt = $(this[0].parentElement)
+
+        if (this.isClass(parent)) {
+            while (prnt[0] != null) {
+                if (prnt.hasClass(parent.substr(1))) return prnt
+                else  prnt = $(prnt[0].parentElement)
+            }
+        }
+
+       
+        return undefined
+    }
+
+    /* ==================== Start Css Things ==================== */
+    width () {
+        return this[0].offsetWidth
+    }
+
+    height () {
+        return this[0].offsetHeight
+    }
+
+    getCssProperty (propName) {
+        return getComputedStyle(this[0])[propName]
+    }
+    /* ==================== End Css Things ==================== */
+    /* ==================== Start IN Just That Class {Private} ==================== */
+    isClass(str) {
+        const arrOfElms = str.split(" ")
+        return arrOfElms[arrOfElms.length - 1][0] == "."
+    }
+
+    isId(str) {
+        const arrOfElms = str.split(" ")
+        return arrOfElms[arrOfElms.length - 1][0] == "#"
+    }
+
+    isHTMLNodeName(str) {
+        const arrOfElms = str.split(" ");
+        const ask = document.createElement(arrOfElms[arrOfElms.length - 1]) instanceof HTMLUnknownElement
+        return !ask
+    }
+   /* ==================== End IN Just That Class {Private} ==================== */
 
 }
 
@@ -192,13 +227,17 @@ class VectorElementCollection extends Array {
 // $(".fade-this").popUp(500)
 
 // $(".f-two").popOut(200)
+// console.log($(".f-two").hasClass("fade-this"))
+
+console.log($(".hello").width())
+
+// console.log($(".hello").isHTMLNodeName("h6"))
+
+
 
 
 
 //<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
 /*
-    - parent()
-    - popUp(time)
-    - popOut(time)
-    - hasClass(className)
+    - parent() => need to put an id or element name like p or h1 as parameters
 */

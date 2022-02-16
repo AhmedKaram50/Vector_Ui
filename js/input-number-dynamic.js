@@ -28,4 +28,3 @@ class DynamicInputNumber {
 
 const inputNumber = new DynamicInputNumber("#v-inputNumber", "#increase", "#decrease", 10, 100);
 
-console.log(inputNumber.getValue())

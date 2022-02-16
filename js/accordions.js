@@ -3,9 +3,6 @@ class Accordion {
         this.variantName = variantName;
         this.animationDur = animationDur;
     }
-    printVariantName () {
-        console.log(this.variantName)
-    }
 }
 
 const headingLinks = document.querySelectorAll("[class*=accordion_][class$=_heading] ul li");
@@ -47,4 +44,3 @@ accordionToggle.forEach(elmnt => {
 
 
 const accordion= new Accordion("default", 500);
-accordion.printVariantName()

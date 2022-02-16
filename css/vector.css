@@ -24,7 +24,7 @@
 /*--- New ---- */
 body {
   height: 5000px;
-  background-color: #222f3e;
+  background-color: #1c1c1c;
   color: #fff;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -348,5 +348,11 @@ div[class^="accordion"][class$="_body"] p {
   margin-top: 20px;
   padding: 20px;
   line-height: 30px;
+}
+
+.hello {
+  width: 100px;
+  display: block;
+  padding: 20px;
 }
 /*# sourceMappingURL=vector.css.map */
