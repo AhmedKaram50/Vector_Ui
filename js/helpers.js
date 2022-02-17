@@ -186,6 +186,13 @@ class VectorElementCollection extends Array {
         return undefined
     }
 
+    hide () {
+        return this.forEach(el => el.style.display = "none");
+    }
+
+    show () {
+        return this.forEach(el => el.style.display = "block");
+    }
     /* ==================== Start Css Things ==================== */
     width () {
         return this[0].offsetWidth
@@ -225,8 +232,7 @@ class VectorElementCollection extends Array {
 
 
 
-
 //<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
 /*
-    - parent() => need to put an id or element name like p or h1 as parameters
+    - append => needs to deal with an html elements not just string and vectorCollection elements
 */

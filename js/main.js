@@ -9,7 +9,7 @@ function countriesData (countryBox, regionBox, countryName = "Egypt") {
                     regionBox.append(`<option value="${region.name}">${region.name}</option>`)
                 })
             } else countryBox.append(`<option>${country.countryName}</option>`)
-            
+            return countries
         })
-    }).then(() => countryBox.change((e) => countriesData(countryBox, regionBox, e.target.value)))
+    })
 }
