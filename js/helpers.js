@@ -220,18 +220,7 @@ class VectorElementCollection extends Array {
 }
 
 
-// countriesData($("#countries"), $("#regions"))
 
-
-
-// $(".fade-this").popUp(500)
-
-// $(".f-two").popOut(200)
-// console.log($(".f-two").hasClass("fade-this"))
-
-console.log($(".hello").width())
-
-// console.log($(".hello").isHTMLNodeName("h6"))
 
 
 
