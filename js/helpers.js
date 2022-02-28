@@ -184,10 +184,11 @@ class VectorElementCollection extends Array {
     }
 
     slideUp(options) {
+        const realHeight = this[0].scrollHeight
         const animationBody = `
             @keyframes slideUp {
                 0% {max-height: 0;}
-                100% { max-height: 300px;}
+                100% { max-height: ${realHeight}px}
             }
         `
         this.slideHelper().sheet.insertRule(animationBody)
@@ -200,9 +201,10 @@ class VectorElementCollection extends Array {
     }
 
     slideDown(options) {
+        const realHeight = this[0].scrollHeight
         const animationBody = `
             @keyframes slideDown {
-                0% {max-height: 300px;}
+                0% {max-height: ${realHeight}px;}
                 100% { max-height: 0;}
             }
         `
@@ -217,16 +219,16 @@ class VectorElementCollection extends Array {
     static isSlideUp = true;
 
     slideToggle(options) {
-
+        const realHeight = this[0].scrollHeight
         const animationBody = `
             @keyframes slideUp {
                 0% {max-height: 0;}
-                100% { max-height: 300px;}
+                100% { max-height: ${realHeight}px;}
             }
         `
         const animationBody2 = `
             @keyframes slideDown {
-                0% {max-height: 300px;}
+                0% {max-height: ${realHeight}px;}
                 100% { max-height: 0;}
             }
         `
@@ -249,8 +251,6 @@ class VectorElementCollection extends Array {
             }
         }
         VectorElementCollection.isSlideUp = !VectorElementCollection.isSlideUp
-        
-
        
     }
     /* ==================== End Animations ==================== */
@@ -319,6 +319,11 @@ class VectorElementCollection extends Array {
 }
 
 
+$("#slidBtn").click((e) => {
+    $(".slide-up").slideUp(1000)
+})
+
+$("#slidDown").click(() => $(".slide-up").slideDown(1000))
 
 
 
