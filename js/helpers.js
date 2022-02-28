@@ -14,6 +14,15 @@ function $(selector) {
 
 // This Class Is Trying to be a Jquery or maybe better
 class VectorElementCollection extends Array {
+
+    // constructor () {
+    //     super()
+    //     this.isStyleTagExist = false
+    // }
+
+    static isStyleTagExist = false
+
+
     on (eventName, callBack) {
         this.forEach(el => el.addEventListener(eventName, callBack))
     }
@@ -146,6 +155,8 @@ class VectorElementCollection extends Array {
          return this
     }
 
+     /* ==================== Start Animations ==================== */
+
     popUp(time) {
         const timeInSeconds = time / 1000;
         this.css({
@@ -172,6 +183,77 @@ class VectorElementCollection extends Array {
         }, 0)
     }
 
+    slideUp(options) {
+        const animationBody = `
+            @keyframes slideUp {
+                0% {max-height: 0;}
+                100% { max-height: 300px;}
+            }
+        `
+        this.slideHelper().sheet.insertRule(animationBody)
+
+        if (!isNaN(options)){
+            this.forEach(el => el.style.animation = `slideUp ${options/1000}s forwards ease-in-out`)
+        } else {
+            this.forEach(el => el.style.animation = `slideUp ${options}`)
+        }
+    }
+
+    slideDown(options) {
+        const animationBody = `
+            @keyframes slideDown {
+                0% {max-height: 300px;}
+                100% { max-height: 0;}
+            }
+        `
+        this.slideHelper().sheet.insertRule(animationBody)
+        if (!isNaN(options)){
+            this.forEach(el => el.style.animation = `slideDown ${options/1000}s ease-in-out`)
+        } else {
+            this.forEach(el => el.style.animation = `slideDown ${options}`)
+        }
+    }
+
+    static isSlideUp = true;
+
+    slideToggle(options) {
+
+        const animationBody = `
+            @keyframes slideUp {
+                0% {max-height: 0;}
+                100% { max-height: 300px;}
+            }
+        `
+        const animationBody2 = `
+            @keyframes slideDown {
+                0% {max-height: 300px;}
+                100% { max-height: 0;}
+            }
+        `
+
+        this.slideHelper().sheet.insertRule(animationBody)
+        this.slideHelper().sheet.insertRule(animationBody2)
+
+        
+        if (VectorElementCollection.isSlideUp) {
+            if (!isNaN(options)){
+                this.forEach(el => el.style.animation = `slideUp ${options/1000}s ease-in-out forwards`)
+            } else {
+                this.forEach(el => el.style.animation = `slideUp ${options}`)
+            }
+        } else {
+            if (!isNaN(options)){
+                this.forEach(el => el.style.animation = `slideDown ${options/1000}s ease-in-out forwards`)
+            } else {
+                this.forEach(el => el.style.animation = `slideDown ${options}`)
+            }
+        }
+        VectorElementCollection.isSlideUp = !VectorElementCollection.isSlideUp
+        
+
+       
+    }
+    /* ==================== End Animations ==================== */
     parent(parent) {
         let prnt = $(this[0].parentElement)
 
@@ -181,7 +263,6 @@ class VectorElementCollection extends Array {
                 else  prnt = $(prnt[0].parentElement)
             }
         }
-
        
         return undefined
     }
@@ -222,6 +303,17 @@ class VectorElementCollection extends Array {
         const ask = document.createElement(arrOfElms[arrOfElms.length - 1]) instanceof HTMLUnknownElement
         return !ask
     }
+
+    slideHelper () {
+        if (!VectorElementCollection.isStyleTagExist) {
+            let dynamicStyles = document.createElement('style');
+            dynamicStyles.type = 'text/css';
+            $(dynamicStyles).attr("id", "styleFromJs")
+            document.head.appendChild(dynamicStyles);
+            VectorElementCollection.isStyleTagExist = true
+            return dynamicStyles
+        } else return document.getElementById("styleFromJs")
+    }
    /* ==================== End IN Just That Class {Private} ==================== */
 
 }
@@ -231,8 +323,15 @@ class VectorElementCollection extends Array {
 
 
 
-
 //<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
 /*
     - append => needs to deal with an html elements not just string and vectorCollection elements
+    - $ => when we parse an array or htmlColection it should convert them to VectorElementCollection
+    - .text() => grap the text in element and if it was a number string make it a number
+    - empty => should return this
+    - empty => sould delete the text also
+    - parent => you can use closest instade the loop
+    - isHTMLElement => we can use element.matches("string")
+    - slideToggle()
+    - slideUp, SlidDown => Handle The max-height
 */
