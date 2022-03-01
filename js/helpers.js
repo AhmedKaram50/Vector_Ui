@@ -319,11 +319,11 @@ class VectorElementCollection extends Array {
 }
 
 
-$("#slidBtn").click((e) => {
-    $(".slide-up").slideUp(1000)
-})
+// $("#slidBtn").click((e) => {
+//     $(".slide-up").slideUp(1000)
+// })
 
-$("#slidDown").click(() => $(".slide-up").slideDown(1000))
+// $("#slidDown").click(() => $(".slide-up").slideDown(1000))
 
 
 
