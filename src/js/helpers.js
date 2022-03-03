@@ -339,4 +339,7 @@ class VectorElementCollection extends Array {
     - isHTMLElement => we can use element.matches("string")
     - slideToggle()
     - slideUp, SlidDown => Handle The max-height
+    - next, prev methods
+
+    [1] => core.js Implementation - https://github.com/zloirock/core-js
 */

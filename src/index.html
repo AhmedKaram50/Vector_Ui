@@ -219,7 +219,22 @@
       </select>
     </div> -->
 
-    <accordion-list></accordion-list>
+    <accordion-list 
+      default-value="menu"
+      current-value=""
+      css='{
+        "background-color": "#000",
+        "color": "#fff"
+      }'
+    >
+      <li class="active"><a href="#">Welcome</a></li>
+      <li><a href="#">Pre-Orders</a></li>
+      <li><a href="#">Gift Cards</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><a href="#">Account Details</a></li>
+      <li><a href="#">Wishlist</a></li>
+      <li><a href="#">Waitlists</a></li>
+    </accordion-list>
 
 
     <script src="js/main.js"></script>
@@ -227,7 +242,6 @@
     <script src="js/accordions.js"></script>
     <script src="js/side-bar.js"></script>
     <script src="js/input-number-dynamic.js"></script>
-    <script src="js//dataGetter.js"></script>
     <script src="js/sideBar.js"></script>
     <script src="js/DropDown.js"></script>
     <script src="js/AccordionList.js"></script>
