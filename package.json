@@ -1,5 +1,25 @@
 {
-  "dependencies": {
-    "webpack": "^5.69.1"
+  "name": "vector",
+  "version": "1.0.0",
+  "description": "Learning Webpack",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedKaram50/Vector_Ui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedKaram50/Vector_Ui/issues"
+  },
+  "homepage": "https://github.com/AhmedKaram50/Vector_Ui#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
   }
 }

@@ -1,4 +1,6 @@
-function $(selector) {
+
+
+export function $(selector) {
     if (typeof selector == "string") {
         if (selector.startsWith("#")) return new VectorElementCollection(document.getElementById(selector.substr(1)))
         else if (selector.startsWith(".")) {
@@ -13,12 +15,7 @@ function $(selector) {
 
 
 // This Class Is Trying to be a Jquery or maybe better
-class VectorElementCollection extends Array {
-
-    // constructor () {
-    //     super()
-    //     this.isStyleTagExist = false
-    // }
+export class VectorElementCollection extends Array {
 
     static isStyleTagExist = false
 
@@ -155,8 +152,7 @@ class VectorElementCollection extends Array {
          return this
     }
 
-     /* ==================== Start Animations ==================== */
-
+    /* ==================== Start Animations ==================== */
     popUp(time) {
         const timeInSeconds = time / 1000;
         this.css({
@@ -324,7 +320,6 @@ class VectorElementCollection extends Array {
 // })
 
 // $("#slidDown").click(() => $(".slide-up").slideDown(1000))
-
 
 
 

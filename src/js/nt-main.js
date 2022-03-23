@@ -1,4 +1,4 @@
-function countriesData (url, countryBox, regionBox, countryName = "Egypt") {
+function countriesData (url, countryBox, regionBox, countryName = "Egypt", callBack) {
     fetch(url).then(result => result.json())
     .then(countries => {
         countries.forEach(country => {
@@ -11,5 +11,5 @@ function countriesData (url, countryBox, regionBox, countryName = "Egypt") {
             } else countryBox.append(`<option>${country.countryName}</option>`)
             return countries
         })
-    })
+    }).then(() => callBack())
 }

@@ -2,10 +2,11 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/js/helpers.js",
+  mode: "development",
+  entry: "./src/main.js",
   output: {
-    path: path.resolve(__dirname, "/dist"),
-    filename: "app.js",
+    path: path.resolve(__dirname, "dist/"),
+    filename: "app2.js",
   },
   module: {
     rules: [
@@ -14,9 +15,12 @@ module.exports = {
         test: "/.(js|jsx)$/",
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
-  devtool: "cheap-module-eval-source-map",
   devServer: {
     contentBase: path.join(__dirname, "public"),
   },
