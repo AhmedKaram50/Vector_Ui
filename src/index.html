@@ -245,8 +245,92 @@
     <input type="text" id="input1">
     <input type="text" id="input2">
 
+    <div id="selector">
+      <div class="inside">
+        <div class="level">
+          <p>Ahmed is not here</p>
+        </div>
+        <div class="here">
+          <p>Ahmed is here</p>
+        </div>
+        <div class="here">
+          <p>Ahmed is here Too</p>
+          <div id="dodo">
+            <h6>Final Test</h6>
+          </div>
+        </div>
+        <div class="here">
+          <h3>This is h3</h3>
+        </div>
+      </div>
+    </div>
 
-    <script src="../dist/app2.js"></script>
+    <style>
+      #heading_slot{
+        display: flex;
+        padding-bottom: 10px;
+      }
+
+      #heading_slot .head-item{
+        font-weight: 700;
+        margin-right: 30px;
+        cursor: pointer;
+        color: #8e8e8e;
+        cursor: pointer;
+      }
+
+      #heading_slot .head-item.active{
+        color: #fff
+      }
+
+      #body_slot .body-item{
+        overflow: hidden;
+      }
+
+      #body_slot p{
+        line-height: 30px;
+        margin-top: 20px;
+        color: #aaa;
+      }
+    </style>
+
+    <accordion-toggle>
+      <div slot="heading" id="heading_slot">
+        <div class="head-item active" data-for="a">
+          <h3>Ahmed</h3>
+        </div>
+        <div class="head-item" data-for="b">
+            <h3>Item2</h3>
+        </div>
+        <div class="head-item" data-for="c">
+            <h3>Item3</h3>
+        </div>
+      </div>
+      <div slot="body" id="body_slot">
+        <div class="body-item" id="a">
+          <p>
+              Bring your favorite horror film home with 5 Star Vinyl Figures of your favorite characters. This 5 Star Vinyl Figure features 3 points of articulation and character specific accessories so you can create your own story telling moments. The Nightmare on Elm Street Freddy Krueger 5 Star Vinyl Figure measures approximately 3-inches tall, comes packaged in a 5th panel window display box (opening like a book), and includes accessories alternate33333333333333333
+          </p>
+      </div>
+      <div class="body-item" id="b">
+          <p>
+              Bring your favorite horror film home with 5 Star Vinyl Figures of your favorite characters. This 5 Star Vinyl Figure features 3 points of articulation and character specific accessories so you can create your own story telling moments. The Nightmare on Elm Street Freddy Krueger 5 Star Vinyl Figure measures approximately 3-inches tall, comes packaged in a 5th panel window display box (opening like a book), and includes accessories alternate222222222222
+          </p>
+      </div>
+      <div class="body-item" id="c">
+          <p>
+              Bring your favorite horror film home with 5 Star Vinyl Figures of your favorite characters. This 5 Star Vinyl Figure features 3 points of articulation and character specific accessories so you can create your own story telling moments. The Nightmare on Elm Street Freddy Krueger 5 Star Vinyl Figure measures approximately 3-inches tall, comes packaged in a 5th panel window display box (opening like a book), and includes accessories alternate33333333333333333
+          </p>
+      </div>
+      </div>
+    </accordion-toggle>
+
+    <select name="" id="Shipping.Country"></select>
+    <select name="" id="regions-select"></select>
+
+    <!-- <script src="../dist/app2.js"></script> -->
+    <script src="./js/helpers.js"></script>
+    <script src="./js/accordions.js"></script>
 
   </body>
 </html>

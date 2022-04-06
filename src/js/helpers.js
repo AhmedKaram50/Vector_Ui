@@ -1,21 +1,27 @@
-
-
-export function $(selector) {
+function $ (selector) {
     if (typeof selector == "string") {
-        if (selector.startsWith("#")) return new VectorElementCollection(document.getElementById(selector.substr(1)))
-        else if (selector.startsWith(".")) {
-            const element = Array.from(document.querySelectorAll(selector));
-            if (element.length == 1) return new VectorElementCollection(element[0])
-            else {
-                return new VectorElementCollection(...element)
+        const arrElement = selector.split(" ")
+        let elementDom = [document]
+        for (let i = 0; i < arrElement.length; i++) {
+            if (arrElement[i].startsWith("#")) elementDom = elementDom.map(el => el.getElementById(arrElement[i].substr(1)))
+            else if (arrElement[i].startsWith(".")) {
+                elementDom = elementDom.map(el => Array.from(el.querySelectorAll(arrElement[i]))).flat()
+            } else if (!(document.createElement(arrElement[i]) instanceof HTMLUnknownElement)) { // * If The String is Html Element
+                elementDom = elementDom.map(el => Array.from(el.querySelectorAll(arrElement[i]))).flat()
+            } else {
+                elementDom = "the element is not found"
             }
         }
-    } else return new VectorElementCollection(selector)
+        return new VectorElementCollection(...elementDom)
+    } else {
+        // ! Do Some Code Here 
+        return new VectorElementCollection(selector)
+    }
 }
 
 
 // This Class Is Trying to be a Jquery or maybe better
-export class VectorElementCollection extends Array {
+class VectorElementCollection extends Array {
 
     static isStyleTagExist = false
 
@@ -119,6 +125,13 @@ export class VectorElementCollection extends Array {
         return siblings
     }
 
+    convertToDom () {
+        if (this[0].startsWith('<') && this[0].endsWith('>')) {
+            const parser = new DOMParser();
+            const HTMLDom = parser.parseFromString(this[0], 'text/html')
+            return HTMLDom
+        } else throw Error('This String is not a valid HTML String')
+    }
     /* ==================== Start Events ==================== */
     click(callBack) {
         this.forEach(el => el.addEventListener("click", (e) => callBack(e)))
@@ -196,7 +209,7 @@ export class VectorElementCollection extends Array {
         }
     }
 
-    slideDown(options) {
+    slideDown(options, callBack) {
         const realHeight = this[0].scrollHeight
         const animationBody = `
             @keyframes slideDown {
@@ -206,9 +219,13 @@ export class VectorElementCollection extends Array {
         `
         this.slideHelper().sheet.insertRule(animationBody)
         if (!isNaN(options)){
-            this.forEach(el => el.style.animation = `slideDown ${options/1000}s ease-in-out`)
+            this.forEach(el => el.style.animation = `slideDown ${options/1000}s forwards ease-in-out`)
         } else {
             this.forEach(el => el.style.animation = `slideDown ${options}`)
+        }
+        // Execute The Callback After The Time Of Animation Ends
+        if (!isNaN(options) && callBack) {
+            callBack()
         }
     }
 
@@ -335,6 +352,39 @@ export class VectorElementCollection extends Array {
     - slideToggle()
     - slideUp, SlidDown => Handle The max-height
     - next, prev methods
+    - Val function on inputs 
 
     [1] => core.js Implementation - https://github.com/zloirock/core-js
 */
+
+let count = 0
+function countriesData (countries, countryBox, regionBox, countryName = "Egypt") {
+    count++
+    regionBox.empty()
+    countryBox.empty()
+    console.log(countryBox[0])
+    countries.forEach(country => {
+        if (country.countryName == countryName) {
+            countryBox.append(`<option selected>${country.countryName}</option>`)
+            country.regions.forEach(region => {
+                regionBox.append(`<option value="${region.name}">${region.name}</option>`)
+            })
+        } else countryBox.append(`<option>${country.countryName}</option>`)
+    })
+    // return () => {
+    //     console.log("aa")
+    // }
+    countryBox.change((e) => {
+        countriesData (countries, countryBox, regionBox, e.target.value)
+        console.log(count)
+    })
+}
+
+
+const countriesSelectBox = document.getElementById("Shipping.Country");
+const regionSelectBox = document.getElementById("regions-select");
+
+fetch("https://cdn.lexmodo.com/1/b7a39ac257a2a4ea1ef4f07bb50937801/json/countries_NVnnuqcTJ.json").then(result => result.json())
+    .then(countries => {
+        countriesData(countries, $(countriesSelectBox), $(regionSelectBox), "Egypt")
+    })
