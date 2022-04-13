@@ -1,4 +1,4 @@
-function countriesData (countries, countryBox, regionBox, countryName = "Egypt") {
+export function countriesData (countries, countryBox, regionBox, countryName = "Egypt", callBack) {
     regionBox.empty()
     countryBox.empty()
     countries.forEach(country => {
@@ -9,9 +9,13 @@ function countriesData (countries, countryBox, regionBox, countryName = "Egypt")
             })
         } else countryBox.append(`<option>${country.countryName}</option>`)
     })
-    countryBox.change((e) => {
-        countriesData (countries, countryBox, regionBox, e.target.value)
-    })
+   
+    const handleRec = (e) => {
+        countriesData (countries, countryBox, regionBox, e.target.value, callBack)
+        countryBox[0].removeEventListener('change', handleRec)
+		if (callBack) callBack(e)
+    }
+    countryBox[0].addEventListener('change', handleRec)
 }
 
 

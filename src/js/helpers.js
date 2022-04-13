@@ -1,3 +1,5 @@
+
+
 function $ (selector) {
     if (typeof selector == "string") {
         const arrElement = selector.split(" ")
@@ -13,6 +15,10 @@ function $ (selector) {
             }
         }
         return new VectorElementCollection(...elementDom)
+    } else if (NodeList.prototype.isPrototypeOf(selector)) {
+        const vecs = new VectorElementCollection()
+        selector.forEach(el => vecs.push(el))
+        return vecs
     } else {
         // ! Do Some Code Here 
         return new VectorElementCollection(selector)
@@ -64,27 +70,26 @@ class VectorElementCollection extends Array {
     }
 
     append (elementOrString, position = "append") {
-        if (position == "append") {
-            if (elementOrString instanceof VectorElementCollection){
-                this.forEach(el => {
-                    elementOrString.forEach(one => el.appendChild(one))
+
+        if (elementOrString instanceof VectorElementCollection){
+            this.forEach(el => {
+                elementOrString.forEach(one => {
+                    if (position == "append") el.appendChild(one)
+                    else el.prepend(one)
                 })
-            } else {
-                this.forEach(el => {
-                    el.insertAdjacentHTML('beforeend', elementOrString)
-                })
-            }
-        } else if (position == "prepend") {
-            if (elementOrString instanceof VectorElementCollection){
-                this.forEach(el => {
-                    elementOrString.forEach(one => el.prepend(one))
-                })
-            } else {
-                this.forEach(el => {
-                    el.insertAdjacentHTML('afterbegin', elementOrString)
-                })
-            }
+            })
+        } else if (typeof elementOrString == "string") {
+            this.forEach(el => {
+                if (position == "append") el.insertAdjacentHTML('beforeend', elementOrString)
+                else el.insertAdjacentHTML('afterbegin', elementOrString)
+            })
+        } else if (elementOrString instanceof HTMLElement) {
+            this.forEach(el => {
+                if (position == "append") el.appendChild(elementOrString)
+                else el.prepend(elementOrString)
+            })
         }
+
     }
 
     attr (attributeName, value) {
@@ -267,7 +272,7 @@ class VectorElementCollection extends Array {
        
     }
     /* ==================== End Animations ==================== */
-    parent(parent) {
+    parent (parent) {
         let prnt = $(this[0].parentElement)
 
         if (this.isClass(parent)) {
@@ -331,6 +336,9 @@ class VectorElementCollection extends Array {
 
 }
 
+console.log("ahmed")
+console.log($(".accordion_toggle_title"))
+
 
 // $("#slidBtn").click((e) => {
 //     $(".slide-up").slideUp(1000)
@@ -342,8 +350,6 @@ class VectorElementCollection extends Array {
 
 //<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
 /*
-    - append => needs to deal with an html elements not just string and vectorCollection elements
-    - $ => when we parse an array or htmlColection it should convert them to VectorElementCollection
     - .text() => grap the text in element and if it was a number string make it a number
     - empty => should return this
     - empty => sould delete the text also
@@ -352,39 +358,10 @@ class VectorElementCollection extends Array {
     - slideToggle()
     - slideUp, SlidDown => Handle The max-height
     - next, prev methods
-    - Val function on inputs 
-
+    - Val function on inputs
     [1] => core.js Implementation - https://github.com/zloirock/core-js
 */
 
-let count = 0
-function countriesData (countries, countryBox, regionBox, countryName = "Egypt") {
-    count++
-    regionBox.empty()
-    countryBox.empty()
-    console.log(countryBox[0])
-    countries.forEach(country => {
-        if (country.countryName == countryName) {
-            countryBox.append(`<option selected>${country.countryName}</option>`)
-            country.regions.forEach(region => {
-                regionBox.append(`<option value="${region.name}">${region.name}</option>`)
-            })
-        } else countryBox.append(`<option>${country.countryName}</option>`)
-    })
-    // return () => {
-    //     console.log("aa")
-    // }
-    countryBox.change((e) => {
-        countriesData (countries, countryBox, regionBox, e.target.value)
-        console.log(count)
-    })
-}
-
-
-const countriesSelectBox = document.getElementById("Shipping.Country");
-const regionSelectBox = document.getElementById("regions-select");
-
-fetch("https://cdn.lexmodo.com/1/b7a39ac257a2a4ea1ef4f07bb50937801/json/countries_NVnnuqcTJ.json").then(result => result.json())
-    .then(countries => {
-        countriesData(countries, $(countriesSelectBox), $(regionSelectBox), "Egypt")
-    })
+// const anyElement = Array.from(document.querySelectorAll("p"))
+// console.log(anyElement)
+// console.log($(anyElement))

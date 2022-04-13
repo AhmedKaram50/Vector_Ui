@@ -1,13 +1,9 @@
 // Common Module
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
   entry: "./src/main.js",
-  output: {
-    filename: "app3.[contenthash].js",
-    path: path.resolve(__dirname, "dist/"),
-  },
   module: {
     rules: [
       {
@@ -21,7 +17,13 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    contentBase: path.join(__dirname, "public"),
-  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "ahmed",
+      template: "./src/index.html"
+    })
+  ],
+  // devServer: {
+  //   contentBase: path.join(__dirname, "src"),
+  // },
 };
