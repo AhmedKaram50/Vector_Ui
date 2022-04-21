@@ -3,7 +3,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./src/main.js",
+  entry: {
+    main: "./src/main.js",
+    vendor: "./src/vendor.js"
+  },
   module: {
     rules: [
       {
@@ -12,9 +15,21 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
+      {
+        test: /\.html$/,
+        use: ["html-loader"]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        loader: "file-loader",
+        options: {
+          outputPath: "images",
+          name: "[name].[hash].[ext]"
+        }
+      }
     ],
   },
   plugins: [
@@ -23,7 +38,4 @@ module.exports = {
       template: "./src/index.html"
     })
   ],
-  // devServer: {
-  //   contentBase: path.join(__dirname, "src"),
-  // },
 };

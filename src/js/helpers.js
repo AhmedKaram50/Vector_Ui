@@ -29,6 +29,7 @@ function $ (selector) {
 // This Class Is Trying to be a Jquery or maybe better
 class VectorElementCollection extends Array {
 
+    /* =============== Start DOM Manipulation =============== */
     static isStyleTagExist = false
 
 
@@ -137,6 +138,7 @@ class VectorElementCollection extends Array {
             return HTMLDom
         } else throw Error('This String is not a valid HTML String')
     }
+     /* =============== Start DOM Manipulation =============== */
     /* ==================== Start Events ==================== */
     click(callBack) {
         this.forEach(el => el.addEventListener("click", (e) => callBack(e)))
@@ -336,8 +338,7 @@ class VectorElementCollection extends Array {
 
 }
 
-console.log("ahmed")
-console.log($(".accordion_toggle_title"))
+
 
 
 // $("#slidBtn").click((e) => {
