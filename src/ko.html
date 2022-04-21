@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ko</title>
+</head>
+<body>
+
+    <div>You've clicked <span data-bind='text: numberOfClicks'>&nbsp;</span> times</div>
+ 
+    <button data-bind='click: registerClick, disable: hasClickedTooManyTimes'>Click me</button>
+    
+    <div data-bind='visible: hasClickedTooManyTimes'>
+        That's too many clicks! Please stop before you wear out your fingers.
+        <button data-bind='click: resetClicks'>Reset clicks</button>
+    </div>
+
+
+    <script src="./js/ko.js"></script>
+    <script src="./js/test-ko.js"></script>
+</body>
+</html>
