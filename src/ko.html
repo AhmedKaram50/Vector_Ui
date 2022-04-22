@@ -8,15 +8,30 @@
 </head>
 <body>
 
-    <div>You've clicked <span data-bind='text: numberOfClicks'>&nbsp;</span> times</div>
- 
-    <button data-bind='click: registerClick, disable: hasClickedTooManyTimes'>Click me</button>
-    
-    <div data-bind='visible: hasClickedTooManyTimes'>
-        That's too many clicks! Please stop before you wear out your fingers.
-        <button data-bind='click: resetClicks'>Reset clicks</button>
+    <form data-bind="submit:addItem">
+        Add item: <input type="text" data-bind='value:itemToAdd, valueUpdate: "afterkeydown"' />
+        <button type="submit" data-bind="enable: itemToAdd().length > 0">Add</button>
+    </form>
+     
+    <p>Your values:</p>
+    <select multiple="multiple" height="5" data-bind="options:allItems, selectedOptions:selectedItems"> </select>
+     
+    <div>
+        <button data-bind="click: removeSelected, enable: selectedItems().length > 0">Remove</button>
+        <button data-bind="click: sortItems, enable: allItems().length > 1">Sort</button>
     </div>
 
+    <section>
+        <div class="for" data-bind="click: forFun" id="1">66</div>
+        <div class="for" data-bind="click: forFun" id="2">66</div>
+        <div class="for" data-bind="click: forFun" id="3">66</div>
+        <div class="for" data-bind="click: forFun" id="4">66</div>
+        <div class="for" data-bind="click: forFun" id="5">66</div>
+        <div class="for" data-bind="click: forFun" id="6">66</div>
+    </section>
+
+
+    <!-- <button id="hoho" data-bind="click: sayHi">AAA</button> -->
 
     <script src="./js/ko.js"></script>
     <script src="./js/test-ko.js"></script>

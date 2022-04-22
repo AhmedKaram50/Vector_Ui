@@ -7,6 +7,16 @@
     <title>Vector | Docs</title>
   </head>
   <body>
+
+    <section class="test-ko">
+      <button data-event="click: sayHi, mouseover: sayHello">HEy</button>
+
+      <ul>
+        <li data-event="mouseover: sayHello">HI</li>
+      </ul>
+    </section>
+
+
     <h5><i class="fas fa-heart" id="open_side_bar"></i></h5>
     <section class="side-bar" id="sidebar">
       <i class="fas fa-times" id="close_side_bar"></i>
@@ -113,9 +123,10 @@
       </div>
     </section>
 
-    <span id="increase">+</span>
-    <input type="number" value="0" id="v-inputNumber">
-    <span id="decrease">-</span>
+    <span id="decrease" data-bind="firstName">Bind Here As well</span>
+    <input type="text" data-bind="name" />
+    <span id="decrease" data-bind="name">Bind Here</span>
+    <button data-event="click: refreshCartInfo">Change</button>
 
 
     <h4 class="test_move">I will Move To putin Div</h4>
@@ -207,16 +218,6 @@
     </div>
     
     
-    <!-- <div class="dropdown buysell-cc-dropdown newselectbox">
-      <select name="ddlSourceBalance" id="ddlSourceBalance" class="form-control">
-        <option selected="selected" value="" class="emptyOption"></option>
-        <option value="EUR">EUR 15831.56</option>
-        <option value="EUR">EUR 15831.11</option>
-        <option value="EUR">EUR 44.56</option>
-        <option value="EUR">EUR ergreg.56</option>
-      </select>
-    </div> -->
-
     <accordion-list 
       default-value="menu"
       current-value=""

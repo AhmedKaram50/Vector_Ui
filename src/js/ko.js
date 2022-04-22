@@ -14,6 +14,7 @@
             navigator = window['navigator'],
             jQueryInstance = window["jQuery"],
             JSON = window["JSON"];
+
     
         if (!jQueryInstance && typeof jQuery !== "undefined") {
             jQueryInstance = jQuery;
@@ -449,7 +450,10 @@
                 } else if (!mustUseAttachEvent && typeof element.addEventListener == "function")
                     element.addEventListener(eventType, wrappedHandler, false);
                 else if (typeof element.attachEvent != "undefined") {
-                    var attachEventHandler = function (event) { wrappedHandler.call(element, event); },
+                    var attachEventHandler = function (event) { 
+                        console.log(event)
+                        wrappedHandler.call(element, event)
+                     },
                         attachEventName = "on" + eventType;
                     element.attachEvent(attachEventName, attachEventHandler);
     
@@ -1094,32 +1098,17 @@
             taskQueueLength = 0,
             nextHandle = 1,
             nextIndexToProcess = 0;
-    
         if (window['MutationObserver']) {
             // Chrome 27+, Firefox 14+, IE 11+, Opera 15+, Safari 6.1+
             // From https://github.com/petkaantonov/bluebird * Copyright (c) 2014 Petka Antonov * License: MIT
             scheduler = (function (callback) {
                 var div = document.createElement("div");
                 new MutationObserver(callback).observe(div, {attributes: true});
-                return function () { div.classList.toggle("foo"); };
+                return function () { 
+                    div.classList.toggle("foo");
+                 };
             })(scheduledProcess);
-        } else if (document && "onreadystatechange" in document.createElement("script")) {
-            // IE 6-10
-            // From https://github.com/YuzuJS/setImmediate * Copyright (c) 2012 Barnesandnoble.com, llc, Donavon West, and Domenic Denicola * License: MIT
-            scheduler = function (callback) {
-                var script = document.createElement("script");
-                script.onreadystatechange = function () {
-                    script.onreadystatechange = null;
-                    document.documentElement.removeChild(script);
-                    script = null;
-                    callback();
-                };
-                document.documentElement.appendChild(script);
-            };
-        } else {
-            scheduler = function (callback) {
-                setTimeout(callback, 0);
-            };
+
         }
     
         function processTasks() {
@@ -1150,6 +1139,7 @@
         }
     
         function scheduledProcess() {
+            
             processTasks();
     
             // Reset the queue
@@ -3118,10 +3108,10 @@
                 // that are direct descendants of <ul> into the preceding <li>)
                 if (!htmlTagsWithOptionallyClosingChildren[ko.utils.tagNameLower(elementVerified)])
                     return;
-    
                 // Scan immediate children to see if they contain unbalanced comment tags. If they do, those comment tags
                 // must be intended to appear *after* that child, so move them there.
                 var childNode = elementVerified.firstChild;
+                
                 if (childNode) {
                     do {
                         if (childNode.nodeType === 1) {
@@ -3151,7 +3141,8 @@
     ko.exportSymbol('virtualElements.prepend', ko.virtualElements.prepend);
     ko.exportSymbol('virtualElements.setDomNodeChildren', ko.virtualElements.setDomNodeChildren);
     (function() {
-        var defaultBindingAttributeName = "data-bind";
+        // ! this is the Html Data Attribute => [1]
+        var defaultBindingAttributeName = "data-bind"; 
     
         ko.bindingProvider = function() {
             this.bindingCache = {};
@@ -3169,7 +3160,7 @@
                 }
             },
     
-            'getBindings': function(node, bindingContext) {
+            'getBindings': function(node, bindingContext) { // ! Here They Get The Binding Attribute value => [2]
                 var bindingsString = this['getBindingsString'](node, bindingContext),
                     parsedBindings = bindingsString ? this['parseBindingsString'](bindingsString, bindingContext, node) : null;
                 return ko.components.addBindingsForCustomElement(parsedBindings, node, bindingContext, /* valueAccessors */ false);
