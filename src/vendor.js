@@ -1,2 +1,2 @@
-// import "bootstrap";
-// import "./sass/vector.scss"
+import "bootstrap";
+import "./sass/vector.scss"

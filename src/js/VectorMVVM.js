@@ -1,3 +1,5 @@
+import { Subject } from "rxjs";
+
 export class VectorMVVM {
     constructor(pageNameObject) {
         this.pageNameObject = pageNameObject
@@ -26,61 +28,60 @@ export class VectorMVVM {
     }
 
     handleBindings () {
-        const bindingDataAttribute = "data-bind";
-        const bindingsSelectors = document.querySelectorAll(`[${bindingDataAttribute}]`);
-        // const options = {
-        //     attributes: true,
-        //     childList: true, 
-        //     subtree: true
-        // }
+        /*
+            TODO: loop on all data prop in this.pageNameObject [✔️]
+            TODO: make subject for each prop inside data object [✔️]
+            TODO: make Observable for Each Subject [✔️]
+            TODO: Inside Subscribe for Each prop in data object [✔️]
+            TODO: loop on elements that hav data-bind="pop in data"
+            TODO: check if thare is an input or select or etc.. 
+            TODO: if exist then add event keyup in case input & make the value = next
+            TODO: if not (then its an div or any other Html Element) exist then make the InnerHtml of the divs = next
+        */
+        
+        const data = this.pageNameObject.data
+        
+        // const bindingsSelectors = document.querySelectorAll(`[${bindingDataAttribute}]`);
+        
+        for (let key in data) {
+            const subject = new Subject()
+            this.observeValue(key, subject)
 
-        // const callBack = (mut, obs) => {
-        //     console.log(mut)
-        // }
-        
-        // const observer = new MutationObserver(callBack)
+            // * Initial Value For Every Elements has data-bind
+            subject.next(data[key])
 
-        
-        console.log(this.pageNameObject.data)
-
-        
-        console.log(this.pageNameObject)
-
-        
-        bindingsSelectors.forEach((el) => {
-            // observer.observe(el, options)
-            const bindingMethodNames = el.dataset.bind
-            const value = this.pageNameObject[bindingMethodNames]
-            this.isEnableValueElement(el) ? el.value = value : el.innerHTML = value
-        
-        });
+        }
     }
 
-    // handleBindings () { // ! This is binding by data function 
-    //     const bindingDataAttribute = "data-bind";
-    //     const observerFunctionName = "data";
-    //     const bindingsSelectors = document.querySelectorAll(`[${bindingDataAttribute}]`);
-    //     const options = {
-    //         attributes: true,
-    //         childList: true, 
-    //         subtree: true
-    //     }
+    observeValue (dataKey, subj) {
+        const bindingDataAttribute = "data-bind";
+        const subject$ = subj.asObservable()
+        const bindSelectorForProp = document.querySelectorAll(`[${bindingDataAttribute}=${dataKey}]`);
 
-    //     const callBack = (mut, obs) => {
-    //         console.log(mut)
-    //     }
-        
-    //     const observer = new MutationObserver(callBack)
-        
-    //     const values = this.pageNameObject[observerFunctionName]()
-        
-    //     bindingsSelectors.forEach((el) => {
-    //         observer.observe(el, options)
-    //         const bindingMethodNames = el.dataset.bind
-    //         const value = values[bindingMethodNames]
-    //         this.isEnableValueElement(el) ? el.value = value : el.innerHTML = value
-    //     });
-    // }
+        // * That Will Execute On Changes
+        subject$.subscribe(value => {
+            // * Check If there Is an elements that have prop bind
+            if (bindSelectorForProp.length) { 
+                bindSelectorForProp.forEach((el) => {
+                    this.isEnableValueElement(el) ? el.value = value : el.innerHTML = value
+                });
+            }
+        })
+
+        // * handle if the bind element is input & add Event For it to change every input change
+        bindSelectorForProp.forEach(el => {
+            if (el instanceof HTMLInputElement) {
+                el.addEventListener("keyup", (e) => {
+                    subj.next(e.target.value)
+                    // this.changeObserverValue(subj, e.target.value)
+                })
+            }
+        })
+    }
+
+    changeObserverValue (subject, newValue) {
+        subject.next(newValue)
+    }
 
     isEnableValueElement (element) { // * Check if the element can access value prop or not
         const arrOfHTMLElements = [HTMLInputElement, HTMLSelectElement, HTMLOptionElement]
