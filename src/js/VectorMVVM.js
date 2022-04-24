@@ -58,8 +58,12 @@ export class VectorMVVM {
         const subject$ = subj.asObservable()
         const bindSelectorForProp = document.querySelectorAll(`[${bindingDataAttribute}=${dataKey}]`);
 
-        // * That Will Execute On Changes
-        subject$.subscribe(value => {
+        /*
+            * That Will Execute On Changes
+            * this action 1 execute when the observable is changed 
+            * you can make multiple actions Asyncronously 
+        */
+        const action1 = subject$.subscribe(value => {
             // * Check If there Is an elements that have prop bind
             if (bindSelectorForProp.length) { 
                 bindSelectorForProp.forEach((el) => {
