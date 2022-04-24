@@ -28,17 +28,6 @@ export class VectorMVVM {
     }
 
     handleBindings () {
-        /*
-            TODO: loop on all data prop in this.pageNameObject [✔️]
-            TODO: make subject for each prop inside data object [✔️]
-            TODO: make Observable for Each Subject [✔️]
-            TODO: Inside Subscribe for Each prop in data object [✔️]
-            TODO: loop on elements that hav data-bind="pop in data"
-            TODO: check if thare is an input or select or etc.. 
-            TODO: if exist then add event keyup in case input & make the value = next
-            TODO: if not (then its an div or any other Html Element) exist then make the InnerHtml of the divs = next
-        */
-        
         const data = this.pageNameObject.data
         
         // const bindingsSelectors = document.querySelectorAll(`[${bindingDataAttribute}]`);

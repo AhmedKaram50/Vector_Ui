@@ -340,14 +340,6 @@ class VectorElementCollection extends Array {
 
 
 
-// $("#slidBtn").click((e) => {
-//     $(".slide-up").slideUp(1000)
-// })
-
-// $("#slidDown").click(() => $(".slide-up").slideDown(1000))
-
-
-
 //<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
 /*
     - .text() => grap the text in element and if it was a number string make it a number
@@ -359,9 +351,7 @@ class VectorElementCollection extends Array {
     - slideUp, SlidDown => Handle The max-height
     - next, prev methods
     - Val function on inputs
+    - $ want to make second param indicates to what dom you looking in (window.document, orAnotherDom)
     [1] => core.js Implementation - https://github.com/zloirock/core-js
 */
 
-// const anyElement = Array.from(document.querySelectorAll("p"))
-// console.log(anyElement)
-// console.log($(anyElement))
