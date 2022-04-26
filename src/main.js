@@ -49,3 +49,57 @@ new VectorMVVM(pageName);
 // }, 5000)
 
 
+class BST {
+  constructor (arr) {
+    this.arr = arr
+    this.start = 0
+    this.end = arr.length - 1
+    this.mid = Math.floor(arr.length / 2) // * Pointer That Indicates The Middle of array
+  }
+
+  getMidRight () { // * Getting The Middle Of the half Right part of The array
+    return Math.ceil((this.mid + this.end) / 2) 
+  }
+
+  getMidLeft () { // * Getting The Middle Of the half Left part of The array
+    return Math.floor((this.mid + this.start) / 2) 
+  }
+
+  isContinue () { // * Stops The Recursion When The mid is reached the start or end of array
+    return this.mid > this.start && this.mid < this.end
+  }
+
+  indexOf(num) {
+    if (num == this.arr[0]) return 0  // * if The number is the first or last value in the array then we dont need to make the Recursion 
+    else if (num == this.arr.at(-1)) return this.arr.length - 1
+
+    if (this.isContinue()) {
+      
+      if (num > this.arr[this.mid]) {
+        this.start = this.mid
+        this.mid = this.getMidRight()
+        this.indexOf(num) // ! Dangerous Recursion :)
+      } else if (num < this.arr[this.mid]) {
+        this.end = this.mid
+        this.mid = this.getMidLeft() 
+        this.indexOf(num) // ! Dangerous Recursion :)
+      } else {
+        console.log("found", this.mid)
+        return 999
+      }
+    } else {
+      console.log("yes")
+      return -1 // * Not Found
+    }
+  }
+  
+}
+
+const arr = new BST([-5, 1, 10, 50, 55, 100, 900])
+console.log(arr.indexOf(100)) // 5
+
+/*
+  -5, 1, 10, 50, 55, 100, 900
+   0  1   2  3   4    5    6
+*/
+
