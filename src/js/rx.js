@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable, fromEvent } from "rxjs";
 
 const observable = new Observable((subs) => {
   subs.next(1);
@@ -9,6 +9,14 @@ const observable = new Observable((subs) => {
     subs.complete();
   }, 1000);
 });
+
+
+const clickEvent = fromEvent(document.getElementById("rx"), "click")
+const clickEventSub = clickEvent.subscribe(
+  (e) => console.log(e)
+)
+
+
 
 
 observable.subscribe({ 
@@ -22,16 +30,8 @@ observable.subscribe({
 
 // When the First Observer Subscribe is totally finished the second will execute
 
-observable.subscribe({
-    next(val) {
-        console.log("From Second Subscribe", val)
-    }
-})
-
-/*
-1
-2
-3
-4
-console.log("Completed");
-*/
+// observable.subscribe({
+//     next(val) {
+//         console.log("From Second Subscribe", val)
+//     }
+// })
