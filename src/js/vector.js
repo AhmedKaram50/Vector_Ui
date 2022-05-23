@@ -138,7 +138,32 @@ class VectorElementCollection extends Array {
             return HTMLDom
         } else throw Error('This String is not a valid HTML String')
     }
-     /* =============== Start DOM Manipulation =============== */
+
+    text () {
+        return this[0].textContent
+    }
+
+    parent (parent) {
+        let prnt = $(this[0].parentElement)
+        if (parent) {
+            if (this.isClass(parent)) {
+                while (prnt[0] != null) {
+                    if (prnt.hasClass(parent.substr(1))) return prnt
+                    else  prnt = $(prnt[0].parentElement)
+                }
+            }
+            return undefined
+        } else return prnt
+    }
+
+    hide () {
+        return this.forEach(el => el.style.display = "none");
+    }
+
+    show () {
+        return this.forEach(el => el.style.display = "block");
+    }
+     /* =============== End DOM Manipulation =============== */
     /* ==================== Start Events ==================== */
     click(callBack) {
         this.forEach(el => el.addEventListener("click", (e) => callBack(e)))
@@ -156,9 +181,11 @@ class VectorElementCollection extends Array {
     empty () {
         const all = new VectorElementCollection()
         this.forEach(el => {
+            el.textContent = ""
             all.push(...el.children)
         })
         all.remove()
+        return this
     }
 
     replaceWith (selector) {
@@ -274,26 +301,6 @@ class VectorElementCollection extends Array {
        
     }
     /* ==================== End Animations ==================== */
-    parent (parent) {
-        let prnt = $(this[0].parentElement)
-
-        if (this.isClass(parent)) {
-            while (prnt[0] != null) {
-                if (prnt.hasClass(parent.substr(1))) return prnt
-                else  prnt = $(prnt[0].parentElement)
-            }
-        }
-       
-        return undefined
-    }
-
-    hide () {
-        return this.forEach(el => el.style.display = "none");
-    }
-
-    show () {
-        return this.forEach(el => el.style.display = "block");
-    }
     /* ==================== Start Css Things ==================== */
     width () {
         return this[0].offsetWidth
@@ -338,20 +345,17 @@ class VectorElementCollection extends Array {
 }
 
 
-
+console.log($(".child").parent())
 
 //<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
 /*
-    - .text() => grap the text in element and if it was a number string make it a number
-    - empty => should return this
-    - empty => sould delete the text also
-    - parent => you can use closest instade the loop
     - isHTMLElement => we can use element.matches("string")
     - slideToggle()
     - slideUp, SlidDown => Handle The max-height
     - next, prev methods
     - Val function on inputs
     - $ want to make second param indicates to what dom you looking in (window.document, orAnotherDom)
+    - handling events errors when the element is not found
     [1] => core.js Implementation - https://github.com/zloirock/core-js
 */
 

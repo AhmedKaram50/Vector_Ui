@@ -1,5 +1,6 @@
-import "./js/helpers.js";
-import "./js/rx.js";
+// import "./js/helpers.js";
+import "./js/vector.js";
+// import "./js/rx.js";
 import { VectorMVVM } from "./js/VectorMVVM.js";
 import { Subject } from "rxjs";
 
