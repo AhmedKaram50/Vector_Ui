@@ -139,8 +139,10 @@ class VectorElementCollection extends Array {
         } else throw Error('This String is not a valid HTML String')
     }
 
-    text () {
-        return this[0].textContent
+    text (newText) {
+        if (newText) {
+            this.forEach(el => el.innerHTML = newText)
+        } else return this[0].textContent
     }
 
     parent (parent) {
@@ -156,12 +158,42 @@ class VectorElementCollection extends Array {
         } else return prnt
     }
 
+    next () {
+        const result = new VectorElementCollection()
+        this.forEach(el => el.nextElementSibling ? result.push(el.nextElementSibling) : 0)
+        return result
+    }
+
+    prev () {
+        const result = new VectorElementCollection()
+        this.forEach(el => el.previousElementSibling ? result.push(el.previousElementSibling) : 0)
+        return result
+    }
+
     hide () {
         return this.forEach(el => el.style.display = "none");
     }
 
     show () {
         return this.forEach(el => el.style.display = "block");
+    }
+    
+    first () {
+        return new VectorElementCollection(this[0])
+    }
+
+    last () {
+        return this[this.length - 1];
+    }
+
+    index (i) {
+        return this[i]
+    }
+
+    find (selector) {
+        const vectors = new VectorElementCollection()
+        this.forEach(el => el.querySelectorAll(selector).forEach(e => vectors.push(e)))
+        return vectors
     }
      /* =============== End DOM Manipulation =============== */
     /* ==================== Start Events ==================== */
@@ -173,7 +205,6 @@ class VectorElementCollection extends Array {
         this.forEach(el => el.addEventListener("change", (e) => callBack(e)))
     }
     /* ==================== End Events ==================== */
-
     remove() {
         this.forEach(el => el.remove())
     }
@@ -198,7 +229,6 @@ class VectorElementCollection extends Array {
         }
          return this
     }
-
     /* ==================== Start Animations ==================== */
     popUp(time) {
         const timeInSeconds = time / 1000;
@@ -213,13 +243,14 @@ class VectorElementCollection extends Array {
         }, 0)
     }
 
-    popOut(time) {
+    popOut(time, transformOrigin) {
         const timeInSeconds = time / 1000;
         this.css({
             "transform": "scale(1)"
         })
         setTimeout(() => {
             this.css({
+                "transform-origin": transformOrigin ? transformOrigin : 'center',
                 "transition": `all ${timeInSeconds}s cubic-bezier(0, 0.04, 0, 0.89)`,
                 "transform": "scale(0)"
             })
@@ -345,14 +376,12 @@ class VectorElementCollection extends Array {
 }
 
 
-console.log($(".child").parent())
 
 //<script src="https://rawcdn.githack.com/AhmedKaram50/Vector_Ui/master/js/helpers.js?token=GHSAT0AAAAAABQAB6VVU23H7LWXWULIP2LUYP73L7A"></script>
 /*
     - isHTMLElement => we can use element.matches("string")
     - slideToggle()
     - slideUp, SlidDown => Handle The max-height
-    - next, prev methods
     - Val function on inputs
     - $ want to make second param indicates to what dom you looking in (window.document, orAnotherDom)
     - handling events errors when the element is not found
