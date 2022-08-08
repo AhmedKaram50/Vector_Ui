@@ -386,5 +386,6 @@ class VectorElementCollection extends Array {
     - $ want to make second param indicates to what dom you looking in (window.document, orAnotherDom)
     - handling events errors when the element is not found
     [1] => core.js Implementation - https://github.com/zloirock/core-js
+    in all event we need to handle second param (once: bool)
 */
 
