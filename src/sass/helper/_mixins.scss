@@ -27,6 +27,7 @@
   @media (max-width: map-get($responsive-screens,"miduem")) {width: $mid}
   @media (max-width: map-get($responsive-screens,"large")) {width: $lg}
   @media (max-width: map-get($responsive-screens,"xlarge")) {width: $xlg}
+  @media (min-width: map-get($responsive-screens,"xlarge")) {width: $xlg}
 }
 /*--- New ---- */
 @mixin def-flex($width, $gap){

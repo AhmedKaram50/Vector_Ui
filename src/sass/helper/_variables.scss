@@ -1,4 +1,5 @@
-$main-color: #00b894;
+$main-color: #1575BF;
+$high-light: #1A92EE;
 $second-color: #1c1c1c;
 $third-color: #525252;
 $fourth-color: #08548e;
@@ -7,9 +8,10 @@ $main-shadow: 0 10px 10px 20px #b0b8d617, 10px 10px 15px -5px #b0b8d6;
 $section-width: 70%;
 $greeen-color: #2bc155;
 $red-color: #f35757;
-$main-font: 'Poppins', sans-serif;
+$main-font: 'Rubik', sans-serif;
 $body-color: #222f3e;
 $accent-color: #8E8E8E;
+$main-text-color: #202223;
 
 // Flate Colors
 $flat-green: #00b894;
@@ -22,6 +24,14 @@ $responsive-screens: (
   'xsmall': 675px,
   'small': 768px,
   'miduem': 992px,
-  'large': 1400px,
+  'large': 1200px,
   'xlarge': 1600px,
+);
+
+$container-screens: (
+  'xsmall': 100%,
+  'small': 600px,
+  'miduem': 700px,
+  'large': 900px,
+  'xlarge': 1500px,
 );

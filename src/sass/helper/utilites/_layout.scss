@@ -1,0 +1,36 @@
+/*
+    Spacing
+*/
+.flex{
+    display: flex;
+}
+.justify-content-center{
+    justify-content: center;
+}
+.justify-content-between{
+    justify-content: space-between;
+}
+.justify-content-around{
+    justify-content: space-around;
+}
+.align-center{
+    align-items: center;
+}
+.align-end{
+    align-items: flex-end;
+}
+.align-start{
+    align-items: flex-start;
+}
+.w-30 {
+    width: 30%;
+}
+/* Gap from 0 to 45 */
+$i: 0;
+@while $i < 50 {
+  .gap-#{$i} {
+    gap: #{$i}px;
+  }
+  $i: $i + 5;
+}
+

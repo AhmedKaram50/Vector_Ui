@@ -9,3 +9,45 @@
 @import "functions";
 @import "mixins";
 @import "media";
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Rubik:wght@400;500;600;700&display=swap");
+// Container
+.container {
+  width: map-get($container-screens, "xlarge");
+  margin: 0 auto;
+  @media (max-width: map-get($responsive-screens, "xlarge")) {
+    width: map-get($container-screens, "xlarge");
+  }
+  @media (max-width: map-get($responsive-screens, "large")) {
+    width: map-get($container-screens, "large");
+  }
+  @media (max-width: map-get($responsive-screens, "miduem")) {
+    width: map-get($container-screens, "miduem");
+  }
+  @media (max-width: map-get($responsive-screens, "small")) {
+    width: map-get($container-screens, "small");
+  }
+  @media (max-width: map-get($responsive-screens, "xsmall")) {
+    width: map-get($container-screens, "xsmall");
+  }
+}
+
+.image-holder {
+  img {
+    @extend %img-props;
+  }
+}
+
+// Headings
+.main-heading {
+  color: $main-text-color;
+  &.lg {
+    @include res-font-size(62px, 62px, 62px, 62px, 62px);
+  }
+  &.md {
+    @include res-font-size(40px, 40px, 40px, 40px, 40px);
+  }
+  &.sm {
+    @include res-font-size(62px, 62px, 62px, 62px, 62px);
+  }
+}
