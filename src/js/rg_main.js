@@ -1,0 +1,2 @@
+const getCountryProvinces = (countries, country) => countries.filter(c => c.countryName === country)[0].regions
+const searchCountry = (countries, subCuntriy) => countries.filter(c => c.countryName.toLowerCase().includes(subCuntriy.toLowerCase()))
